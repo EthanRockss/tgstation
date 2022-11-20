@@ -16,6 +16,7 @@
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "rend")
 	icon = 'icons/obj/cult/items_and_weapons.dmi'
 	icon_state = "cultbastard"
+	inhand_icon_state = "cultbastard"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -35,12 +36,12 @@
 	AddComponent( \
 		/datum/component/spin2win, \
 		spin_cooldown_time = 25 SECONDS, \
-		on_spin_callback = CALLBACK(src, .proc/on_spin), \
-		on_unspin_callback = CALLBACK(src, .proc/on_unspin), \
+		on_spin_callback = CALLBACK(src, PROC_REF(on_spin)), \
+		on_unspin_callback = CALLBACK(src, PROC_REF(on_unspin)), \
 		start_spin_message = span_danger("%USER begins swinging the sword around with inhuman strength!"), \
 		end_spin_message = span_warning("%USER's inhuman strength dissipates and the sword's runes grow cold!") \
 	)
-	
+
 /obj/item/cult_bastard/proc/on_spin(mob/living/user, duration)
 	var/oldcolor = user.color
 	user.color = "#ff0000"
